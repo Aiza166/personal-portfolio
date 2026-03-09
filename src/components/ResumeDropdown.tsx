@@ -5,7 +5,7 @@ interface ResumeDownloadProps {
 }
 
 const ResumeDownload = ({ variant = "pill" }: ResumeDownloadProps) => {
-  const resumePath = "/your-resume-path-here.pdf"; // need to update
+  const resumePath = "public/Aiza_Gazyani - Resume.pdf"; 
 
   return (
     <a
