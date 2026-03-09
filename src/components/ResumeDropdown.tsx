@@ -5,8 +5,6 @@ import { Download, ChevronDown } from "lucide-react";
 const resumes = [
   { label: "Software Engineering", file: "/Aiza_Gazyani_Resume_SWE.pdf" },
   { label: "IT Support", file: "/Aiza_Gazyani_Resume_IT.pdf" },
-  { label: "Developer", file: "/Aiza_Gazyani_Resume_Dev.pdf" },
-  { label: "General", file: "/Aiza_Gazyani_Resume_General.pdf" },
 ];
 
 interface ResumeDropdownProps {
