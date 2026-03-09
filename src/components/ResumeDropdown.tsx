@@ -3,8 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Download, ChevronDown } from "lucide-react";
 
 const resumes = [
-  { label: "Software Engineering", file: "/Aiza_Gazyani_Resume_SWE.pdf" },
-  { label: "IT Support", file: "/Aiza_Gazyani_Resume_IT.pdf" },
+ 
 ];
 
 interface ResumeDropdownProps {
