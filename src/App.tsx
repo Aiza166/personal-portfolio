@@ -5,10 +5,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import CaseStudy from "./pages/CaseStudy";
+import { MotionConfig } from "framer-motion";
 
 const queryClient = new QueryClient();
 
 const App = () => (
+  <MotionConfig reducedMotion="user">
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
@@ -16,12 +19,14 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/work/:slug" element={<CaseStudy />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
+  </MotionConfig>
 );
 
 export default App;

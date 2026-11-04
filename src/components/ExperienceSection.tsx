@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const experiences = [
   {
@@ -19,6 +20,7 @@ const experiences = [
     company: "AlphaVenture",
     period: "Jun – Jul '26 · Onsite",
     link: "https://hackerman.alphaventure.com",
+    caseStudy: "/work/alphaventure-ai-analyst",
     bullets: [
       "Built the AI analyst for the company's Y Combinator startup product: a chat tool answering plain-English questions about 5,998 startups from a live MariaDB database, returning tables, charts, and full reports streamed to the browser as the model writes them. PHP 8.3 and plain JavaScript, no framework.",
       "Designed a Model Context Protocol server as the model's only path to the database, permitting read-only queries with size caps and backing it with low-permission accounts, so a model-written query could not alter or overload the data.",
@@ -177,6 +179,11 @@ const ExperienceSection = () => {
                     <a href={exp.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-mono text-[11px] text-primary hover:underline mb-5">
                       Live in production ↗
                     </a>
+                  )}
+                  {exp.caseStudy && (
+                    <Link to={exp.caseStudy} className="inline-flex items-center gap-1.5 font-mono text-[11px] text-primary hover:underline mb-5 ml-5">
+                      Read the case study →
+                    </Link>
                   )}
                   <div className="flex flex-wrap gap-2">
                     {exp.tags.map((t) => (
