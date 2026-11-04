@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const experiences = [
   {
@@ -11,6 +12,7 @@ const experiences = [
     ],
     tags: ["AI Agents", "Evaluation", "Reliability", "#1 of 30"],
     num: "01",
+    highlight: "#1 of 30 → offer",
   },
   {
     role: "Software Engineering Intern",
@@ -26,6 +28,7 @@ const experiences = [
     ],
     tags: ["PHP 8.3", "JavaScript", "MCP", "MariaDB", "SSE", "Chart.js", "61s → 24s"],
     num: "02",
+    highlight: "61s → 24s · live in prod",
   },
   {
     role: "Technology Simulation",
@@ -37,6 +40,7 @@ const experiences = [
     ],
     tags: ["Python", "Data Analysis", "Dashboard"],
     num: "03",
+    earlier: true,
   },
   {
     role: "AI & Web Development Intern",
@@ -48,6 +52,7 @@ const experiences = [
     ],
     tags: ["Next.js", "Supabase", "MongoDB", "n8n", "Vercel", "CI/CD"],
     num: "04",
+    highlight: "3 apps shipped",
   },
   {
     role: "Software Development Fellow",
@@ -59,6 +64,7 @@ const experiences = [
     ],
     tags: ["DSA", "React", "Node.js", "System Design", "300+ problems"],
     num: "05",
+    highlight: "300+ problems",
   },
   {
     role: "Consultant",
@@ -69,6 +75,7 @@ const experiences = [
     ],
     tags: ["Research", "Consulting"],
     num: "06",
+    earlier: true,
   },
   {
     role: "Marketing Intern",
@@ -81,10 +88,15 @@ const experiences = [
     ],
     tags: ["Marketing", "Arduino", "STEM"],
     num: "07",
+    earlier: true,
   },
 ];
 
 const ExperienceSection = () => {
+  const [showEarlier, setShowEarlier] = useState(false);
+  const main = experiences.filter((e) => !e.earlier);
+  const earlier = experiences.filter((e) => e.earlier);
+  const visible = showEarlier ? [...main, ...earlier] : main;
   return (
     <section id="work" className="py-32 px-6 lg:px-16 relative">
       {/* Decorative corner */}
@@ -120,8 +132,9 @@ const ExperienceSection = () => {
         </div>
 
         {/* Cards */}
-        <div className="space-y-6">
-          {experiences.map((exp, i) => (
+        <div className="relative space-y-6 md:pl-10">
+          <div className="hidden md:block absolute left-3 top-4 bottom-4 w-px bg-gradient-to-b from-primary/50 via-border/40 to-transparent" />
+          {visible.map((exp, i) => (
             <motion.div
               key={exp.company}
               initial={{ opacity: 0, y: 30 }}
@@ -141,6 +154,11 @@ const ExperienceSection = () => {
               <div className="relative grid md:grid-cols-12 gap-6 items-start">
                 <div className="md:col-span-4">
                   <p className="font-mono text-[10px] tracking-widest text-primary/50 mb-2">{exp.period}</p>
+                  {exp.highlight && (
+                    <span className="inline-block mb-3 font-mono text-[11px] px-2.5 py-1 rounded-md bg-primary/10 text-primary border border-primary/20">
+                      {exp.highlight}
+                    </span>
+                  )}
                   <h3 className="font-serif text-2xl md:text-3xl text-foreground group-hover:text-primary transition-colors duration-500">
                     {exp.role}
                   </h3>
@@ -172,6 +190,16 @@ const ExperienceSection = () => {
             </motion.div>
           ))}
         </div>
+        {earlier.length > 0 && (
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={() => setShowEarlier((v) => !v)}
+              className="font-mono text-[11px] tracking-widest uppercase text-primary px-5 py-2.5 rounded-full border border-primary/25 hover:bg-primary/5 transition-colors"
+            >
+              {showEarlier ? "Hide earlier experience" : `Show earlier experience (${earlier.length})`}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
