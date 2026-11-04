@@ -9,16 +9,22 @@ const skills = {
 };
 
 const certifications = [
-  { name: "Aspire Institute", detail: "Aspire Leaders Program (ALP) 2025, Harvard-designed curriculum" },
-  { name: "Google IT Support", detail: "Professional Certificate, In Progress" },
-  { name: "Google Prompt Engineering", detail: "Specialization" },
-  { name: "Google AI Essentials", detail: "" },
+  { name: "Google Prompting Essentials Specialization", detail: "Google · Jan 2026" },
+  { name: "Start Writing Prompts like a Pro", detail: "Google · Jan 2026" },
+  { name: "Use AI as a Creative or Expert Partner", detail: "Google · Jan 2026" },
+  { name: "Speed Up Data Analysis and Presentation Building", detail: "Google · Jan 2026" },
+  { name: "Design Prompts for Everyday Work Tasks", detail: "Google · Jan 2026" },
+  { name: "Aspire Leaders Program", detail: "Aspire Institute, Harvard-designed curriculum · Oct 2025" },
+  { name: "Deloitte Australia Technology Job Simulation", detail: "Forage · Aug 2025" },
+  { name: "Getting Started with Git and GitHub", detail: "IBM · Jun 2025" },
+  { name: "Google AI Essentials", detail: "Coursera · Feb 2025" },
+  { name: "Introduction to Psychology", detail: "Yale University · Sep 2024" },
+  { name: "Entrepreneurship 1: Developing the Opportunity", detail: "University of Pennsylvania · Aug 2024" },
+  { name: "C for Everyone: Structured Programming", detail: "UC Santa Cruz · Jan 2024" },
+  { name: "Create a Website Using WordPress", detail: "Coursera Project Network · Jan 2024" },
+  { name: "Build a Free Website with WordPress", detail: "Coursera Project Network · Jan 2024" },
   { name: "AI Seekho", detail: "Google Cloud, AI & ML" },
-  { name: "Deloitte Tech Simulation", detail: "" },
-  { name: "C Programming", detail: "UC Santa Cruz" },
-  { name: "Intro to Psychology", detail: "Yale University" },
-  { name: "Entrepreneurship 1", detail: "UPenn" },
-  { name: "Git & GitHub", detail: "IBM" },
+  { name: "Google IT Support", detail: "Professional Certificate, In Progress" },
 ];
 
 const leadership = [
@@ -76,6 +82,13 @@ const AboutSection = () => {
           <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-3">Education</p>
           <p className="font-serif text-2xl text-foreground">National University of Computer and Emerging Sciences (FAST NUCES)</p>
           <p className="text-sm text-muted-foreground mt-1">Bachelor of Science in Computer Science · Karachi · 2023 – 2027</p>
+          <p className="font-serif text-2xl text-foreground mt-8">Aspire Institute: Aspire Leaders Program</p>
+          <p className="text-sm text-muted-foreground mt-1">Organizational Leadership · Aug – Oct 2025</p>
+          <p className="text-sm text-muted-foreground mt-3 leading-[1.8] max-w-3xl">
+            Leadership course on Societal Impact for First-Generation Leaders, designed and delivered by Harvard University faculty.
+            Strengths-based leadership assessment, professional development resources co-created with Harvard Business School,
+            and master classes with a global cohort of peers and mentors.
+          </p>
         </motion.div>
 
         {/* Skills */}
