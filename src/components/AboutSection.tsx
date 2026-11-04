@@ -9,7 +9,7 @@ const skills = {
 };
 
 const certifications = [
-  { name: "Aspire Institute", detail: "Organizational Leadership, Harvard-designed curriculum" },
+  { name: "Aspire Institute", detail: "Aspire Leaders Program (ALP) 2025, Harvard-designed curriculum" },
   { name: "Google IT Support", detail: "Professional Certificate, In Progress" },
   { name: "Google Prompt Engineering", detail: "Specialization" },
   { name: "Google AI Essentials", detail: "" },

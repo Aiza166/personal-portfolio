@@ -60,6 +60,28 @@ const experiences = [
     tags: ["DSA", "React", "Node.js", "System Design", "300+ problems"],
     num: "05",
   },
+  {
+    role: "Consultant",
+    company: "Silverlight Research Expert Network",
+    period: "Jan – Apr '24 · Remote (London, UK)",
+    bullets: [
+      "Consulted for a specialist knowledge research firm that connects private equity funds, hedge funds, consultancies, sovereign wealth funds, and corporates with industry experts to inform strategic and investment decisions.",
+    ],
+    tags: ["Research", "Consulting"],
+    num: "06",
+  },
+  {
+    role: "Marketing Intern",
+    company: "The Dawood Foundation (TDF Magnifiscience Centre)",
+    period: "Jun – Jul '23 · Onsite",
+    bullets: [
+      "Completed a 33-hour internship programme focused on inquiry-based learning in an informal science setting.",
+      "Promoted the 'Children's Market' event using strategic marketing techniques.",
+      "Contributed to a STEM project designing a smart stick for visually impaired people using Arduino.",
+    ],
+    tags: ["Marketing", "Arduino", "STEM"],
+    num: "07",
+  },
 ];
 
 const ExperienceSection = () => {
