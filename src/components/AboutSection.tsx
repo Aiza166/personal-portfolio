@@ -1,24 +1,17 @@
 import { motion } from "framer-motion";
 
 const skills = {
-  "Languages": ["C/C++", "Python", "JavaScript", "TypeScript", "SQL", "Bash", "Assembly", "HTML/CSS"],
-  "Frameworks": ["React", "Next.js", "Node.js"],
-  "Backend & Data": ["Supabase", "MongoDB", "Appwrite"],
-  "AI/ML": ["TensorFlow", "Keras", "Scikit-learn", "NumPy", "Pandas", "Matplotlib", "Seaborn"],
-  "Tools": ["Git/GitHub", "Vercel", "n8n", "Jupyter", "Linux", "ShadCN UI"],
+  "Languages": ["C/C++", "Python", "PHP", "SQL", "JavaScript", "TypeScript", "Bash", "Assembly"],
+  "AI & LLM": ["Model Context Protocol (MCP)", "LLM Agents", "TensorFlow", "Scikit-learn", "NumPy", "Pandas"],
+  "Web & Backend": ["React", "Next.js", "FastAPI", "Node.js", "Server-Sent Events", "Chart.js", "ShadCN UI"],
+  "Data": ["MariaDB/MySQL", "MongoDB", "Supabase"],
+  "Systems & Tools": ["Linux", "Apache", "Git/GitHub", "Claude Code", "n8n", "Vercel"],
 };
 
 const certifications = [
   { name: "Aspire Institute", detail: "Organizational Leadership, Harvard-designed curriculum" },
-  { name: "Google IT Support", detail: "Professional Certificate, In Progress" },
   { name: "Google Prompt Engineering", detail: "Specialization" },
-  { name: "Google AI Essentials", detail: "" },
   { name: "AI Seekho", detail: "Google Cloud, AI & ML" },
-  { name: "Deloitte Tech Simulation", detail: "" },
-  { name: "C Programming", detail: "UC Santa Cruz" },
-  { name: "Intro to Psychology", detail: "Yale University" },
-  { name: "Entrepreneurship 1", detail: "UPenn" },
-  { name: "Git & GitHub", detail: "IBM" },
 ];
 
 const leadership = [
@@ -57,10 +50,11 @@ const AboutSection = () => {
               The person behind<br />the <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">pixels</span>
             </h2>
             <p className="text-base text-muted-foreground leading-[1.9] font-light max-w-xl">
-              I believe great software comes from understanding both the
-              machine and the human. From kernel modules to AI-powered apps, I'm drawn
-              to the full spectrum. Outside code, I lead marketing campaigns for campus
-              societies, design graphics, play chess, and cycle through Karachi's streets.
+              I like understanding a system all the way down, from kernel threads
+              and interrupt handlers to the LLM agents I build today, and I care
+              about honest results over impressive-looking ones. Outside code, I
+              lead marketing and design for campus societies, play chess, and cycle
+              through Karachi's streets.
             </p>
           </motion.div>
         </div>

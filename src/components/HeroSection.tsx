@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import logoSrc from "@/assets/logo.png";
 import ResumeDropdown from "./ResumeDropdown";
 
-const roles = ["Full-Stack Developer", "AI/ML Enthusiast", "Systems Programmer", "Software Engineer"];
+const roles = ["AI Engineer Intern @ Agento", "LLM Tooling, End to End", "Systems Programmer", "Final-Year CS @ FAST"];
 
 const HeroSection = () => {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -144,9 +144,10 @@ const HeroSection = () => {
           <div className="relative">
             <div className="absolute -left-6 top-0 bottom-0 w-px bg-gradient-to-b from-primary/40 to-transparent hidden md:block" />
             <p className="text-base text-muted-foreground leading-[1.9] max-w-md font-light">
-              Third-year CS student at FAST NUCES building at the intersection of
-              AI, systems, and meaningful user experiences. I don't just write code, 
-              I craft solutions.
+              Final-year BSCS student at FAST and AI Engineer Intern at Agento.
+              I build LLM-powered tools end to end, from database and backend
+              through to the browser, with a background in systems programming
+              and machine learning.
             </p>
           </div>
         </motion.div>
