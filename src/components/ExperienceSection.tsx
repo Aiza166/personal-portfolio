@@ -4,34 +4,61 @@ const experiences = [
   {
     role: "AI Engineer Intern",
     company: "Agento",
-    period: "Aug '26 – Present",
-    description: "Placed 1st of 30 (Champion) in The Agento Gauntlet '26, a paid national testing cohort for Agento's AI agent platform, which led to a direct offer for this role. Now testing and improving the quality and reliability of the platform with a team of about 8 engineers ahead of launch.",
+    period: "Aug '26 – Present · Remote",
+    bullets: [
+      "Won Champion, placing 1st of 30 in The Agento Gauntlet '26, a paid national testing cohort for Agento's AI agent platform, which led to a direct offer for this role.",
+      "Test and improve the quality and reliability of Agento's AI agent platform as part of a team of about 8 engineers, ahead of the product's launch.",
+    ],
     tags: ["AI Agents", "Evaluation", "Reliability", "#1 of 30"],
     num: "01",
   },
   {
     role: "Software Engineering Intern",
     company: "AlphaVenture",
-    period: "Jun – Jul '26",
-    description: "Built the AI analyst for the company's Y Combinator startup product: a chat tool answering plain-English questions about 5,998 startups from a live MariaDB database, streaming tables, charts, and full reports to the browser. Designed a read-only Model Context Protocol server as the model's only path to the data. Cut first-response time from 61s to 24s by moving deferred startup work to server boot. Shipped it as an embeddable widget too; now live in production at hackerman.alphaventure.com.",
-    tags: ["PHP 8.3", "MCP", "MariaDB", "SSE", "61s → 24s"],
+    period: "Jun – Jul '26 · Onsite",
+    link: "https://hackerman.alphaventure.com",
+    bullets: [
+      "Built the AI analyst for the company's Y Combinator startup product: a chat tool answering plain-English questions about 5,998 startups from a live MariaDB database, returning tables, charts, and full reports streamed to the browser as the model writes them. PHP 8.3 and plain JavaScript, no framework.",
+      "Designed a Model Context Protocol server as the model's only path to the database, permitting read-only queries with size caps and backing it with low-permission accounts, so a model-written query could not alter or overload the data.",
+      "Cut the wait on a user's first message from 61 to 24 seconds by tracing the delay to startup work deferred until the first request rather than the model itself, then moving that work to server boot.",
+      "Shipped the same chat as an embeddable widget on the team's public site, serving one shared copy of the code so the widget and the standalone app could not drift out of sync.",
+      "Handed the project to AlphaVenture's engineers; it is now live in production at hackerman.alphaventure.com.",
+    ],
+    tags: ["PHP 8.3", "JavaScript", "MCP", "MariaDB", "SSE", "Chart.js", "61s → 24s"],
     num: "02",
   },
   {
-    role: "AI & Web Dev Intern",
-    company: "Nexium",
-    period: "Jul '25",
-    description: "Built and deployed 3 full-stack AI apps end to end (Mental Health Tracker, Quote Generator, Blog Summariser) with Next.js, Supabase, MongoDB, and n8n AI workflows. Set up CI/CD, secure auth, and database integrations.",
-    tags: ["Next.js", "Supabase", "MongoDB", "n8n"],
+    role: "Technology Simulation",
+    company: "Deloitte (Forage)",
+    period: "Aug '25 · Virtual",
+    bullets: [
+      "Unified JSON datasets using Python.",
+      "Authored a machine health monitoring dashboard proposal and presented structured solutions to simulated stakeholders.",
+    ],
+    tags: ["Python", "Data Analysis", "Dashboard"],
     num: "03",
   },
   {
-    role: "Software Dev Fellow",
-    company: "Dev Weekends",
-    period: "Jun – Aug '25",
-    description: "Mentor-led fellowship: 30+ DSA sessions and 12 engineering sessions on JavaScript, React, Node.js, and system design. Solved 300+ algorithm problems and contributed to open-source capstone development.",
-    tags: ["DSA", "React", "Node.js", "300+ problems"],
+    role: "AI & Web Development Intern",
+    company: "Nexium",
+    period: "Jul '25 · Remote",
+    bullets: [
+      "Built and deployed 3 full-stack AI-powered applications end to end (Mental Health Tracker, Quote Generator, Blog Summariser) using Next.js, Supabase, MongoDB, ShadCN UI, Vercel, and n8n for AI workflows.",
+      "Improved deployment reliability by implementing CI/CD pipelines, secure authentication, and database integrations.",
+    ],
+    tags: ["Next.js", "Supabase", "MongoDB", "n8n", "Vercel", "CI/CD"],
     num: "04",
+  },
+  {
+    role: "Software Development Fellow",
+    company: "Dev Weekends",
+    period: "Jun – Aug '25 · Remote",
+    bullets: [
+      "Completed a mentor-led fellowship spanning 30+ DSA sessions and 12 engineering sessions (JavaScript, React, Node.js, system design).",
+      "Solved 300+ algorithm problems and contributed to open-source capstone development.",
+    ],
+    tags: ["DSA", "React", "Node.js", "System Design", "300+ problems"],
+    num: "05",
   },
 ];
 
@@ -98,7 +125,19 @@ const ExperienceSection = () => {
                   <p className="text-sm text-accent/80 mt-2 font-medium">{exp.company}</p>
                 </div>
                 <div className="md:col-span-8">
-                  <p className="text-sm text-muted-foreground leading-[1.9] mb-5">{exp.description}</p>
+                  <ul className="space-y-3 mb-5">
+                    {exp.bullets.map((b) => (
+                      <li key={b} className="flex gap-3 text-sm text-muted-foreground leading-[1.8]">
+                        <span className="w-1 h-1 rounded-full bg-primary/50 flex-shrink-0 mt-[0.7rem]" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  {exp.link && (
+                    <a href={exp.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-mono text-[11px] text-primary hover:underline mb-5">
+                      Live in production ↗
+                    </a>
+                  )}
                   <div className="flex flex-wrap gap-2">
                     {exp.tags.map((t) => (
                       <span key={t} className="font-mono text-[10px] px-3 py-1.5 rounded-full border border-border/30 text-muted-foreground group-hover:border-primary/15 transition-colors">

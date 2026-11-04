@@ -61,7 +61,30 @@ const projects: Project[] = [
     category: "OOP / C++",
     description: "Console social platform with auth, posts, stories, and follows, using abstract classes, polymorphism, and password encryption.",
     tags: ["C++", "OOP"],
-    github: "https://github.com/Aiza166/Social-Networking-Platform-Simulator",
+\1  {
+    title: "Quote Generator",
+    category: "AI / Full-Stack",
+    description: "AI-powered inspirational quote generator with curated categories and shareable outputs.",
+    tags: ["Next.js", "AI", "Vercel"],
+  },
+  {
+    title: "Carpooling System",
+    category: "Systems / C",
+    description: "Route matching engine for 45+ transport routes with file handling, data structures, and automated cleanup.",
+    tags: ["C", "Algorithms", "Data Structures"],
+  },
+  {
+    title: "Matrix Calculator",
+    category: "Assembly / Low-Level",
+    description: "Matrix calculator in x86 Assembly using Irvine32 with menu-driven operations like addition, multiplication, and determinant.",
+    tags: ["x86 Assembly", "Irvine32", "Math"],
+  },
+  {
+    title: "Regular Grammar Parser",
+    category: "Theory / Python",
+    description: "Formal language parser implementing regular grammar rules with Python. Open-source under MIT license.",
+    tags: ["Python", "Automata", "Parser"],
+    github: "https://github.com/Aiza166/regular-grammar-parser",
   },
 ];
 

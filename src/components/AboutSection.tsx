@@ -1,17 +1,24 @@
 import { motion } from "framer-motion";
 
 const skills = {
-  "Languages": ["C/C++", "Python", "PHP", "SQL", "JavaScript", "TypeScript", "Bash", "Assembly"],
-  "AI & LLM": ["Model Context Protocol (MCP)", "LLM Agents", "TensorFlow", "Scikit-learn", "NumPy", "Pandas"],
+  "Languages": ["C/C++", "Python", "PHP", "SQL", "JavaScript", "TypeScript", "Bash", "Assembly", "HTML/CSS"],
+  "AI & LLM": ["Model Context Protocol (MCP)", "LLM Agents", "Groq / LLaMA", "Whisper", "Mem0", "TensorFlow", "Keras", "Scikit-learn", "NumPy", "Pandas", "Matplotlib", "Seaborn"],
   "Web & Backend": ["React", "Next.js", "FastAPI", "Node.js", "Server-Sent Events", "Chart.js", "ShadCN UI"],
   "Data": ["MariaDB/MySQL", "MongoDB", "Supabase"],
-  "Systems & Tools": ["Linux", "Apache", "Git/GitHub", "Claude Code", "n8n", "Vercel"],
+  "Systems & Tools": ["Linux", "Apache", "Git/GitHub", "Claude Code", "n8n", "Vercel", "Jupyter", "Appwrite"],
 };
 
 const certifications = [
   { name: "Aspire Institute", detail: "Organizational Leadership, Harvard-designed curriculum" },
+  { name: "Google IT Support", detail: "Professional Certificate, In Progress" },
   { name: "Google Prompt Engineering", detail: "Specialization" },
+  { name: "Google AI Essentials", detail: "" },
   { name: "AI Seekho", detail: "Google Cloud, AI & ML" },
+  { name: "Deloitte Tech Simulation", detail: "" },
+  { name: "C Programming", detail: "UC Santa Cruz" },
+  { name: "Intro to Psychology", detail: "Yale University" },
+  { name: "Entrepreneurship 1", detail: "UPenn" },
+  { name: "Git & GitHub", detail: "IBM" },
 ];
 
 const leadership = [
@@ -59,7 +66,19 @@ const AboutSection = () => {
           </motion.div>
         </div>
 
-        {/* Skills */}
+        {/* Education */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-20 border-l-2 border-primary/30 pl-6"
+        >
+          <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-3">Education</p>
+          <p className="font-serif text-2xl text-foreground">National University of Computer and Emerging Sciences (FAST NUCES)</p>
+          <p className="text-sm text-muted-foreground mt-1">Bachelor of Science in Computer Science · Karachi · 2023 – 2027</p>
+        </motion.div>
+
+\1
         <div className="mb-20">
           <motion.div
             initial={{ opacity: 0 }}
