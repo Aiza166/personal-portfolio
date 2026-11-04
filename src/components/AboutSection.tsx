@@ -21,8 +21,14 @@ const certifications = [
   { name: "Introduction to Psychology", detail: "Yale University · Sep 2024" },
   { name: "Entrepreneurship 1: Developing the Opportunity", detail: "University of Pennsylvania · Aug 2024" },
   { name: "C for Everyone: Structured Programming", detail: "UC Santa Cruz · Jan 2024" },
+  { name: "C for Everyone: Programming Fundamentals", detail: "UC Santa Cruz · Jan 2024" },
   { name: "Create a Website Using WordPress", detail: "Coursera Project Network · Jan 2024" },
   { name: "Build a Free Website with WordPress", detail: "Coursera Project Network · Jan 2024" },
+  { name: "Public Speaking: Give Presentations Without Fear", detail: "Udemy · Nov 2023" },
+  { name: "Complete Photography Masterclass", detail: "Udemy · Nov 2023" },
+  { name: "Crash Course on Python", detail: "Coursera · Nov 2023" },
+  { name: "Python for Beginners", detail: "Udemy · Aug 2023" },
+  { name: "HTML & CSS Certification Course for Beginners", detail: "Udemy · Jul 2023" },
   { name: "AI Seekho", detail: "Google Cloud, AI & ML" },
   { name: "Google IT Support", detail: "Professional Certificate, In Progress" },
 ];
@@ -33,6 +39,21 @@ const leadership = [
   { role: "Co-Head, Content", org: "Developer Student Club" },
   { role: "Co-Head, Marketing", org: "FAST Entrepreneurship Society" },
   { role: "Executive, Marketing", org: "ACM" },
+];
+
+const volunteering = [
+  {
+    role: "Senior Guide",
+    org: "World Association of Girl Guides and Girl Scouts",
+    period: "2012 – Present",
+    detail: "From Junior Guide to Senior Guide over 14+ years: weekly duties, collaborative meetings, and initiatives on climate change and women's empowerment.",
+  },
+  {
+    role: "Logistics Member, e-Chess Team",
+    org: "Global Encounters Festival 2025",
+    period: "Jan – Jul 2025",
+    detail: "Supported planning and execution of international chess events. Received a Certificate of Recognition.",
+  },
 ];
 
 const AboutSection = () => {
@@ -187,6 +208,30 @@ const AboutSection = () => {
                 </motion.div>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Volunteering */}
+        <div className="mt-20">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="h-px w-8 bg-border" />
+            <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground">Volunteering</span>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {volunteering.map((v) => (
+              <motion.div
+                key={v.role}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="group border-l-2 border-border/50 hover:border-primary/40 pl-4 py-1 transition-all duration-300"
+              >
+                <p className="font-mono text-[10px] tracking-widest text-primary/50 mb-1">{v.period}</p>
+                <p className="text-sm text-foreground/80 group-hover:text-foreground font-medium transition-colors">{v.role}</p>
+                <p className="text-xs text-muted-foreground mb-2">{v.org}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">{v.detail}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>
