@@ -61,7 +61,9 @@ const projects: Project[] = [
     category: "OOP / C++",
     description: "Console social platform with auth, posts, stories, and follows, using abstract classes, polymorphism, and password encryption.",
     tags: ["C++", "OOP"],
-\1  {
+    github: "https://github.com/Aiza166/Social-Networking-Platform-Simulator",
+  },
+  {
     title: "Quote Generator",
     category: "AI / Full-Stack",
     description: "AI-powered inspirational quote generator with curated categories and shareable outputs.",

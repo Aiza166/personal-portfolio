@@ -78,7 +78,7 @@ const AboutSection = () => {
           <p className="text-sm text-muted-foreground mt-1">Bachelor of Science in Computer Science · Karachi · 2023 – 2027</p>
         </motion.div>
 
-\1
+        {/* Skills */}
         <div className="mb-20">
           <motion.div
             initial={{ opacity: 0 }}
