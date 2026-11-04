@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const skills = {
   "Languages": ["C/C++", "Python", "PHP", "SQL", "JavaScript", "TypeScript", "Bash", "Assembly", "HTML/CSS"],
@@ -22,13 +23,8 @@ const certifications = [
   { name: "Entrepreneurship 1: Developing the Opportunity", detail: "University of Pennsylvania · Aug 2024" },
   { name: "C for Everyone: Structured Programming", detail: "UC Santa Cruz · Jan 2024" },
   { name: "C for Everyone: Programming Fundamentals", detail: "UC Santa Cruz · Jan 2024" },
-  { name: "Create a Website Using WordPress", detail: "Coursera Project Network · Jan 2024" },
-  { name: "Build a Free Website with WordPress", detail: "Coursera Project Network · Jan 2024" },
   { name: "Public Speaking: Give Presentations Without Fear", detail: "Udemy · Nov 2023" },
-  { name: "Complete Photography Masterclass", detail: "Udemy · Nov 2023" },
   { name: "Crash Course on Python", detail: "Coursera · Nov 2023" },
-  { name: "Python for Beginners", detail: "Udemy · Aug 2023" },
-  { name: "HTML & CSS Certification Course for Beginners", detail: "Udemy · Jul 2023" },
   { name: "AI Seekho", detail: "Google Cloud, AI & ML" },
   { name: "Google IT Support", detail: "Professional Certificate, In Progress" },
 ];
@@ -57,6 +53,8 @@ const volunteering = [
 ];
 
 const AboutSection = () => {
+  const [showAllCerts, setShowAllCerts] = useState(false);
+  const visibleCerts = showAllCerts ? certifications : certifications.slice(0, 6);
   return (
     <section id="about" className="py-32 px-6 lg:px-16 relative">
       {/* Ambient */}
@@ -163,7 +161,7 @@ const AboutSection = () => {
               <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground">Certifications</span>
             </motion.div>
             <div className="space-y-3">
-              {certifications.map((c, i) => (
+              {visibleCerts.map((c, i) => (
                 <motion.div
                   key={c.name}
                   initial={{ opacity: 0, x: -10 }}
@@ -180,6 +178,14 @@ const AboutSection = () => {
                 </motion.div>
               ))}
             </div>
+            {certifications.length > 6 && (
+              <button
+                onClick={() => setShowAllCerts((v) => !v)}
+                className="mt-4 font-mono text-[11px] tracking-widest uppercase text-primary hover:underline"
+              >
+                {showAllCerts ? "Show less" : `Show all ${certifications.length}`}
+              </button>
+            )}
           </div>
 
           {/* Leadership */}
