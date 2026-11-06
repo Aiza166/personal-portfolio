@@ -42,7 +42,7 @@ export const caseStudies: CaseStudy[] = [
       { value: "1", label: "shared codebase for app and widget" },
     ],
     problem: [
-      "The team had a rich database of Y Combinator startups, but answering a question like \"which fintech companies from the last three batches raised a Series A?\" meant writing SQL by hand.",
+      "The team had a rich database of Y Combinator startups, but answering a question like \"which fintech startups in W24 and S24 are hiring with fewer than 50 people?\" meant writing SQL by hand.",
       "Letting a language model query the database directly is risky: a model-written query could modify data, or run something heavy enough to overload a shared production server.",
     ],
     approach: [
