@@ -124,6 +124,15 @@ const CaseStudyPage = () => {
           )}
         </motion.div>
 
+        {cs.image && (
+          <figure className="mb-10">
+            <div className="rounded-2xl overflow-hidden border border-border/40 bg-white shadow-[0_30px_80px_-30px_hsl(var(--primary)/0.35)]">
+              <img src={cs.image.src} alt={cs.image.alt} className="w-full h-auto block" loading="eager" />
+            </div>
+            <figcaption className="text-xs text-muted-foreground mt-3">{cs.image.caption}</figcaption>
+          </figure>
+        )}
+
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-px rounded-2xl overflow-hidden border border-border/30 bg-border/30 mb-4">
           {cs.metrics.map((m) => (
             <div key={m.label} className="bg-background p-6">

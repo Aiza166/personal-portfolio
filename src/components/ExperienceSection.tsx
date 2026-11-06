@@ -21,6 +21,7 @@ const experiences = [
     period: "Jun – Jul '26 · Onsite",
     link: "https://hackerman.alphaventure.com",
     caseStudy: "/work/alphaventure-ai-analyst",
+    image: "/work/hackerman.webp",
     bullets: [
       "Built the AI analyst for the company's Y Combinator startup product: a chat tool answering plain-English questions about 5,998 startups from a live MariaDB database, returning tables, charts, and full reports streamed to the browser as the model writes them. PHP 8.3 and plain JavaScript, no framework.",
       "Designed a Model Context Protocol server as the model's only path to the database, permitting read-only queries with size caps and backing it with low-permission accounts, so a model-written query could not alter or overload the data.",
@@ -167,6 +168,11 @@ const ExperienceSection = () => {
                   <p className="text-sm text-accent/80 mt-2 font-medium">{exp.company}</p>
                 </div>
                 <div className="md:col-span-8">
+                  {exp.image && exp.caseStudy && (
+                    <Link to={exp.caseStudy} className="block mb-6 rounded-xl overflow-hidden border border-border/40 bg-white hover:border-primary/50 transition-colors">
+                      <img src={exp.image} alt="Hackerman, the AI analyst built at AlphaVenture" loading="lazy" className="w-full h-auto block" />
+                    </Link>
+                  )}
                   <ul className="space-y-3 mb-5">
                     {exp.bullets.map((b) => (
                       <li key={b} className="flex gap-3 text-sm text-muted-foreground leading-[1.8]">

@@ -9,6 +9,7 @@ export type CaseStudy = {
   summary: string;
   stack: string[];
   links: { label: string; href: string }[];
+  image?: { src: string; alt: string; caption: string };
   metrics: { value: string; label: string }[];
   problem: string[];
   approach: { heading: string; body: string }[];
@@ -30,6 +31,11 @@ export const caseStudies: CaseStudy[] = [
       "A chat tool that answers plain-English questions about Y Combinator startups from a live MariaDB database, streaming back tables, charts and full reports as the model writes them. Now live in production.",
     stack: ["PHP 8.3", "JavaScript", "MariaDB", "Model Context Protocol", "Server-Sent Events", "Chart.js", "Apache"],
     links: [{ label: "Live in production", href: "https://hackerman.alphaventure.com" }],
+    image: {
+      src: "/work/hackerman.webp",
+      alt: "Hackerman chat answering a question about hiring fintech startups in YC W24 and S24, with a table, a bar chart and a written analysis",
+      caption: "Hackerman in production: one plain-English question returns a table, a chart and a written analysis.",
+    },
     metrics: [
       { value: "61s → 24s", label: "first response time" },
       { value: "5,998", label: "startups queryable" },
