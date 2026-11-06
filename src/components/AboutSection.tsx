@@ -1,24 +1,32 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const skills = {
-  "Languages": ["C/C++", "Python", "JavaScript", "TypeScript", "SQL", "Bash", "Assembly", "HTML/CSS"],
-  "Frameworks": ["React", "Next.js", "Node.js"],
-  "Backend & Data": ["Supabase", "MongoDB", "Appwrite"],
-  "AI/ML": ["TensorFlow", "Keras", "Scikit-learn", "NumPy", "Pandas", "Matplotlib", "Seaborn"],
-  "Tools": ["Git/GitHub", "Vercel", "n8n", "Jupyter", "Linux", "ShadCN UI"],
+  "Languages": ["C/C++", "Python", "PHP", "SQL", "JavaScript", "TypeScript", "Bash", "Assembly", "HTML/CSS"],
+  "AI & LLM": ["Model Context Protocol (MCP)", "LLM Agents", "Groq / LLaMA", "Whisper", "Mem0", "TensorFlow", "Keras", "Scikit-learn", "NumPy", "Pandas", "Matplotlib", "Seaborn"],
+  "Web & Backend": ["React", "Next.js", "FastAPI", "Node.js", "Server-Sent Events", "Chart.js", "ShadCN UI"],
+  "Data": ["MariaDB/MySQL", "MongoDB", "Supabase"],
+  "Systems & Tools": ["Linux", "Apache", "Git/GitHub", "Claude Code", "n8n", "Vercel", "Jupyter", "Appwrite"],
 };
 
 const certifications = [
-  { name: "Aspire Institute", detail: "Organizational Leadership, Harvard-designed curriculum" },
-  { name: "Google IT Support", detail: "Professional Certificate, In Progress" },
-  { name: "Google Prompt Engineering", detail: "Specialization" },
-  { name: "Google AI Essentials", detail: "" },
+  { name: "Google Prompting Essentials Specialization", detail: "Google · Jan 2026" },
+  { name: "Start Writing Prompts like a Pro", detail: "Google · Jan 2026" },
+  { name: "Use AI as a Creative or Expert Partner", detail: "Google · Jan 2026" },
+  { name: "Speed Up Data Analysis and Presentation Building", detail: "Google · Jan 2026" },
+  { name: "Design Prompts for Everyday Work Tasks", detail: "Google · Jan 2026" },
+  { name: "Aspire Leaders Program", detail: "Aspire Institute, Harvard-designed curriculum · Oct 2025" },
+  { name: "Deloitte Australia Technology Job Simulation", detail: "Forage · Aug 2025" },
+  { name: "Getting Started with Git and GitHub", detail: "IBM · Jun 2025" },
+  { name: "Google AI Essentials", detail: "Coursera · Feb 2025" },
+  { name: "Introduction to Psychology", detail: "Yale University · Sep 2024" },
+  { name: "Entrepreneurship 1: Developing the Opportunity", detail: "University of Pennsylvania · Aug 2024" },
+  { name: "C for Everyone: Structured Programming", detail: "UC Santa Cruz · Jan 2024" },
+  { name: "C for Everyone: Programming Fundamentals", detail: "UC Santa Cruz · Jan 2024" },
+  { name: "Public Speaking: Give Presentations Without Fear", detail: "Udemy · Nov 2023" },
+  { name: "Crash Course on Python", detail: "Coursera · Nov 2023" },
   { name: "AI Seekho", detail: "Google Cloud, AI & ML" },
-  { name: "Deloitte Tech Simulation", detail: "" },
-  { name: "C Programming", detail: "UC Santa Cruz" },
-  { name: "Intro to Psychology", detail: "Yale University" },
-  { name: "Entrepreneurship 1", detail: "UPenn" },
-  { name: "Git & GitHub", detail: "IBM" },
+  { name: "Google IT Support", detail: "Professional Certificate, In Progress" },
 ];
 
 const leadership = [
@@ -29,7 +37,24 @@ const leadership = [
   { role: "Executive, Marketing", org: "ACM" },
 ];
 
+const volunteering = [
+  {
+    role: "Senior Guide",
+    org: "World Association of Girl Guides and Girl Scouts",
+    period: "2012 – Present",
+    detail: "From Junior Guide to Senior Guide over 14+ years: weekly duties, collaborative meetings, and initiatives on climate change and women's empowerment.",
+  },
+  {
+    role: "Logistics Member, e-Chess Team",
+    org: "Global Encounters Festival 2025",
+    period: "Jan – Jul 2025",
+    detail: "Supported planning and execution of international chess events. Received a Certificate of Recognition.",
+  },
+];
+
 const AboutSection = () => {
+  const [showAllCerts, setShowAllCerts] = useState(false);
+  const visibleCerts = showAllCerts ? certifications : certifications.slice(0, 6);
   return (
     <section id="about" className="py-32 px-6 lg:px-16 relative">
       {/* Ambient */}
@@ -57,13 +82,33 @@ const AboutSection = () => {
               The person behind<br />the <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">pixels</span>
             </h2>
             <p className="text-base text-muted-foreground leading-[1.9] font-light max-w-xl">
-              I believe great software comes from understanding both the
-              machine and the human. From kernel modules to AI-powered apps, I'm drawn
-              to the full spectrum. Outside code, I lead marketing campaigns for campus
-              societies, design graphics, play chess, and cycle through Karachi's streets.
+              I like understanding a system all the way down, from kernel threads
+              and interrupt handlers to the LLM agents I build today, and I care
+              about honest results over impressive-looking ones. Outside code, I
+              lead marketing and design for campus societies, play chess, and cycle
+              through Karachi's streets.
             </p>
           </motion.div>
         </div>
+
+        {/* Education */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-20 border-l-2 border-primary/30 pl-6"
+        >
+          <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground mb-3">Education</p>
+          <p className="font-serif text-2xl text-foreground">National University of Computer and Emerging Sciences (FAST NUCES)</p>
+          <p className="text-sm text-muted-foreground mt-1">Bachelor of Science in Computer Science · Karachi · 2023 – 2027</p>
+          <p className="font-serif text-2xl text-foreground mt-8">Aspire Institute: Aspire Leaders Program</p>
+          <p className="text-sm text-muted-foreground mt-1">Organizational Leadership · Aug – Oct 2025</p>
+          <p className="text-sm text-muted-foreground mt-3 leading-[1.8] max-w-3xl">
+            Leadership course on Societal Impact for First-Generation Leaders, designed and delivered by Harvard University faculty.
+            Strengths-based leadership assessment, professional development resources co-created with Harvard Business School,
+            and master classes with a global cohort of peers and mentors.
+          </p>
+        </motion.div>
 
         {/* Skills */}
         <div className="mb-20">
@@ -116,7 +161,7 @@ const AboutSection = () => {
               <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground">Certifications</span>
             </motion.div>
             <div className="space-y-3">
-              {certifications.map((c, i) => (
+              {visibleCerts.map((c, i) => (
                 <motion.div
                   key={c.name}
                   initial={{ opacity: 0, x: -10 }}
@@ -133,6 +178,14 @@ const AboutSection = () => {
                 </motion.div>
               ))}
             </div>
+            {certifications.length > 6 && (
+              <button
+                onClick={() => setShowAllCerts((v) => !v)}
+                className="mt-4 font-mono text-[11px] tracking-widest uppercase text-primary hover:underline"
+              >
+                {showAllCerts ? "Show less" : `Show all ${certifications.length}`}
+              </button>
+            )}
           </div>
 
           {/* Leadership */}
@@ -161,6 +214,30 @@ const AboutSection = () => {
                 </motion.div>
               ))}
             </div>
+          </div>
+        </div>
+
+        {/* Volunteering */}
+        <div className="mt-20">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="h-px w-8 bg-border" />
+            <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-muted-foreground">Volunteering</span>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {volunteering.map((v) => (
+              <motion.div
+                key={v.role}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="group border-l-2 border-border/50 hover:border-primary/40 pl-4 py-1 transition-all duration-300"
+              >
+                <p className="font-mono text-[10px] tracking-widest text-primary/50 mb-1">{v.period}</p>
+                <p className="text-sm text-foreground/80 group-hover:text-foreground font-medium transition-colors">{v.role}</p>
+                <p className="text-xs text-muted-foreground mb-2">{v.org}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">{v.detail}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </div>

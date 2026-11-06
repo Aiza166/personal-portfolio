@@ -5,7 +5,7 @@ interface ResumeDownloadProps {
 }
 
 const ResumeDownload = ({ variant = "pill" }: ResumeDownloadProps) => {
-  const resumePath = "public/Aiza_Gazyani - Resume.pdf"; 
+  const resumePath = "/Aiza_Gazyani_Resume.pdf";
 
   return (
     <a

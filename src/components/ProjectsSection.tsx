@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { ArrowUpRight, Github, ExternalLink } from "lucide-react";
 
 interface Project {
@@ -9,19 +11,41 @@ interface Project {
   link?: string;
   github?: string;
   featured?: boolean;
+  slug?: string;
+  kind: "AI" | "Systems" | "Full-stack";
 }
 
 const projects: Project[] = [
   {
+    title: "Baymax: AI Career Copilot",
+    kind: "AI",
+    slug: "baymax-ai-career-copilot",
+    category: "Multi-Agent AI / Hackathon",
+    description: "Built the career-roadmap agent in a five-agent system (AI Mustaqbil 2.0). Generates 90-day learning plans using constraint satisfaction (AC-3 + backtracking) to enforce prerequisites before an LLM writes the guidance. Guardrails: per-IP rate limiting, PII-free logging, explainable scoring. 17-endpoint API, deployed and live.",
+    tags: ["FastAPI", "React", "TypeScript", "LLaMA 3.3", "Whisper", "Mem0"],
+    featured: true,
+  },
+  {
     title: "NeuroDetect",
-    category: "AI / Machine Learning",
-    description: "AI-powered Parkinson's Disease detection using biomedical and lifestyle data. Built with Python, TensorFlow, and Jupyter notebooks.",
-    tags: ["Python", "TensorFlow", "ML", "Jupyter"],
+    kind: "AI",
+    slug: "neurodetect",
+    category: "Machine Learning",
+    description: "Trained a Parkinson's classifier, then audited it for target leakage: 3 of 32 features were clinical assessments of Parkinson's itself. Removing them dropped ROC-AUC from 0.91 to 0.74, then to 0.53 (chance). Identified the dataset as synthetic and published the honest metrics instead of the inflated headline.",
+    tags: ["Python", "TensorFlow", "Keras", "0.91 → 0.53 AUC"],
     github: "https://github.com/Aiza166/NeuroDetect",
     featured: true,
   },
   {
+    title: "Producer-Consumer Kernel Module",
+    kind: "Systems",
+    category: "Linux / Systems",
+    description: "1 producer and 4 consumer kernel threads over a 20-slot, 3-priority circular buffer. Shared-IRQ top half queues a workqueue bottom half; semaphores, mutex, and wait queues. 6 userspace interfaces across procfs, sysfs, debugfs, and misc devices. 600 lines of C, team of 4.",
+    tags: ["C", "Linux Kernel", "Concurrency"],
+    featured: true,
+  },
+  {
     title: "Mental Health Tracker",
+    kind: "Full-stack",
     category: "Full-Stack / AI",
     description: "Mood logging with AI insight generation. Next.js frontend, Supabase auth, MongoDB storage, n8n AI workflows.",
     tags: ["Next.js", "Supabase", "MongoDB", "n8n"],
@@ -29,53 +53,53 @@ const projects: Project[] = [
     featured: true,
   },
   {
-    title: "Kernel Module",
-    category: "Linux / Systems",
-    description: "Priority-based producer-consumer system using kernel threads, semaphores, spinlocks, IRQ handling, and sysfs/debugfs.",
-    tags: ["Linux", "C", "Kernel"],
-  },
-  {
-    title: "Draftly",
-    category: "React / Full-Stack",
-    description: "Full-featured blog app with authentication and CRUD operations, built with React and Appwrite backend.",
-    tags: ["React", "Appwrite", "JavaScript"],
-    github: "https://github.com/Aiza166/Draftly-React-Blog-App",
-  },
-  {
     title: "Blog Summariser",
+    kind: "AI",
     category: "AI / Web App",
-    description: "AI-powered tool that summarises blog posts into concise, readable formats using natural language processing.",
-    tags: ["TypeScript", "AI", "Next.js"],
+    description: "Summarises blog posts into concise, readable formats with an AI workflow behind a Next.js front end.",
+    tags: ["TypeScript", "Next.js", "AI"],
     github: "https://github.com/Aiza166/blog-summariser",
   },
   {
-    title: "Quote Generator",
-    category: "AI / Full-Stack",
-    description: "AI-powered inspirational quote generator with curated categories and shareable outputs.",
-    tags: ["Next.js", "AI", "Vercel"],
-    github: "https://github.com/Aiza166",
+    title: "Draftly",
+    kind: "Full-stack",
+    category: "React / Full-Stack",
+    description: "Blog app with authentication and full CRUD, built with React and an Appwrite backend.",
+    tags: ["React", "Appwrite"],
+    github: "https://github.com/Aiza166/Draftly-React-Blog-App",
   },
   {
     title: "Social Media Simulator",
+    kind: "Systems",
     category: "OOP / C++",
-    description: "Console social platform with auth, posts, stories, follows. Abstract classes, polymorphism, password encryption.",
-    tags: ["C++", "OOP", "File I/O"],
+    description: "Console social platform with auth, posts, stories, and follows, using abstract classes, polymorphism, and password encryption.",
+    tags: ["C++", "OOP"],
     github: "https://github.com/Aiza166/Social-Networking-Platform-Simulator",
   },
   {
+    title: "Quote Generator",
+    kind: "AI",
+    category: "AI / Full-Stack",
+    description: "AI-powered inspirational quote generator with curated categories and shareable outputs.",
+    tags: ["Next.js", "AI", "Vercel"],
+  },
+  {
     title: "Carpooling System",
+    kind: "Systems",
     category: "Systems / C",
     description: "Route matching engine for 45+ transport routes with file handling, data structures, and automated cleanup.",
     tags: ["C", "Algorithms", "Data Structures"],
   },
   {
     title: "Matrix Calculator",
+    kind: "Systems",
     category: "Assembly / Low-Level",
     description: "Matrix calculator in x86 Assembly using Irvine32 with menu-driven operations like addition, multiplication, and determinant.",
     tags: ["x86 Assembly", "Irvine32", "Math"],
   },
   {
     title: "Regular Grammar Parser",
+    kind: "Systems",
     category: "Theory / Python",
     description: "Formal language parser implementing regular grammar rules with Python. Open-source under MIT license.",
     tags: ["Python", "Automata", "Parser"],
@@ -84,8 +108,10 @@ const projects: Project[] = [
 ];
 
 const ProjectsSection = () => {
-  const featured = projects.filter((p) => p.featured);
-  const rest = projects.filter((p) => !p.featured);
+  const [filter, setFilter] = useState<"All" | Project["kind"]>("All");
+  const shown = projects.filter((p) => filter === "All" || p.kind === filter);
+  const featured = shown.filter((p) => p.featured);
+  const rest = shown.filter((p) => !p.featured);
 
   return (
     <section id="projects" className="py-32 px-6 lg:px-16 relative overflow-hidden">
@@ -117,6 +143,23 @@ const ProjectsSection = () => {
           >
             Things I've <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">built</span> & shipped
           </motion.h2>
+        </div>
+
+        {/* Filters */}
+        <div className="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Filter projects">
+          {(["All", "AI", "Systems", "Full-stack"] as const).map((f) => (
+            <button
+              key={f}
+              role="tab"
+              aria-selected={filter === f}
+              onClick={() => setFilter(f)}
+              className={`font-mono text-[11px] tracking-widest uppercase px-4 py-2 rounded-full border transition-colors ${
+                filter === f ? "bg-primary text-primary-foreground border-primary" : "border-border/50 text-muted-foreground hover:text-foreground hover:border-primary/30"
+              }`}
+            >
+              {f}
+            </button>
+          ))}
         </div>
 
         {/* Featured */}
@@ -158,7 +201,15 @@ const ProjectsSection = () => {
                 <h3 className="font-serif text-3xl md:text-4xl text-foreground group-hover:text-primary transition-colors duration-500 mb-4">
                   {p.title}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-[1.8] max-w-sm">{p.description}</p>
+                <p className="text-sm text-muted-foreground leading-[1.8] max-w-md">{p.description}</p>
+                {p.slug && (
+                  <Link
+                    to={`/work/${p.slug}`}
+                    className="inline-flex items-center gap-2 mt-5 font-mono text-[11px] tracking-widest uppercase text-primary hover:gap-3 transition-all"
+                  >
+                    Read case study <ArrowUpRight className="w-3.5 h-3.5" />
+                  </Link>
+                )}
               </div>
               <div className="relative flex flex-wrap gap-2 mt-6">
                 {p.tags.map((t) => (

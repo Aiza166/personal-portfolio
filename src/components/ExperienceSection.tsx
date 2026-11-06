@@ -1,33 +1,105 @@
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const experiences = [
   {
-    role: "Software Dev Fellow",
-    company: "Dev Weekends",
-    period: "Jun – Aug '25",
-    description: "Completed 300+ LeetCode problems. Joined 30+ DSA sessions and 12 engineering workshops covering React, Node.js, and system design. Contributed to open-source projects.",
-    tags: ["DSA", "React", "Node.js", "Open Source"],
+    role: "AI Engineer Intern",
+    company: "Agento",
+    period: "Aug '26 – Present · Remote",
+    bullets: [
+      "Won Champion, placing 1st of 30 in The Agento Gauntlet '26, a paid national testing cohort for Agento's AI agent platform, which led to a direct offer for this role.",
+      "Test and improve the quality and reliability of Agento's AI agent platform as part of a team of about 8 engineers, ahead of the product's launch.",
+    ],
+    tags: ["AI Agents", "Evaluation", "Reliability", "#1 of 30"],
     num: "01",
+    highlight: "#1 of 30 → offer",
   },
   {
-    role: "AI & Web Dev Intern",
-    company: "Nexium",
-    period: "Jul '25",
-    description: "Shipped 3 AI-powered apps end-to-end. Set up CI/CD, auth, and database integrations across Next.js, Supabase, and MongoDB.",
-    tags: ["Next.js", "AI", "Supabase", "CI/CD"],
+    role: "Software Engineering Intern",
+    company: "AlphaVenture",
+    period: "Jun – Jul '26 · Onsite",
+    link: "https://hackerman.alphaventure.com",
+    caseStudy: "/work/alphaventure-ai-analyst",
+    image: "/work/hackerman.webp",
+    bullets: [
+      "Built the AI analyst for the company's Y Combinator startup product: a chat tool answering plain-English questions about 5,998 startups from a live MariaDB database, returning tables, charts, and full reports streamed to the browser as the model writes them. PHP 8.3 and plain JavaScript, no framework.",
+      "Designed a Model Context Protocol server as the model's only path to the database, permitting read-only queries with size caps and backing it with low-permission accounts, so a model-written query could not alter or overload the data.",
+      "Cut the wait on a user's first message from 61 to 24 seconds by tracing the delay to startup work deferred until the first request rather than the model itself, then moving that work to server boot.",
+      "Shipped the same chat as an embeddable widget on the team's public site, serving one shared copy of the code so the widget and the standalone app could not drift out of sync.",
+      "Handed the project to AlphaVenture's engineers; it is now live in production at hackerman.alphaventure.com.",
+    ],
+    tags: ["PHP 8.3", "JavaScript", "MCP", "MariaDB", "SSE", "Chart.js", "61s → 24s"],
     num: "02",
+    highlight: "61s → 24s · live in prod",
   },
   {
     role: "Technology Simulation",
     company: "Deloitte (Forage)",
-    period: "Aug '25",
-    description: "Unified JSON datasets using Python. Authored a machine health monitoring dashboard proposal. Presented structured solutions to simulated stakeholders.",
+    period: "Aug '25 · Virtual",
+    bullets: [
+      "Unified JSON datasets using Python.",
+      "Authored a machine health monitoring dashboard proposal and presented structured solutions to simulated stakeholders.",
+    ],
     tags: ["Python", "Data Analysis", "Dashboard"],
     num: "03",
+    earlier: true,
+  },
+  {
+    role: "AI & Web Development Intern",
+    company: "Nexium",
+    period: "Jul '25 · Remote",
+    bullets: [
+      "Built and deployed 3 full-stack AI-powered applications end to end (Mental Health Tracker, Quote Generator, Blog Summariser) using Next.js, Supabase, MongoDB, ShadCN UI, Vercel, and n8n for AI workflows.",
+      "Improved deployment reliability by implementing CI/CD pipelines, secure authentication, and database integrations.",
+    ],
+    tags: ["Next.js", "Supabase", "MongoDB", "n8n", "Vercel", "CI/CD"],
+    num: "04",
+    highlight: "3 apps shipped",
+  },
+  {
+    role: "Software Development Fellow",
+    company: "Dev Weekends",
+    period: "Jun – Aug '25 · Remote",
+    bullets: [
+      "Completed a mentor-led fellowship spanning 30+ DSA sessions and 12 engineering sessions (JavaScript, React, Node.js, system design).",
+      "Solved 300+ algorithm problems and contributed to open-source capstone development.",
+    ],
+    tags: ["DSA", "React", "Node.js", "System Design", "300+ problems"],
+    num: "05",
+    highlight: "300+ problems",
+  },
+  {
+    role: "Consultant",
+    company: "Silverlight Research Expert Network",
+    period: "Jan – Apr '24 · Remote (London, UK)",
+    bullets: [
+      "Consulted for a specialist knowledge research firm that connects private equity funds, hedge funds, consultancies, sovereign wealth funds, and corporates with industry experts to inform strategic and investment decisions.",
+    ],
+    tags: ["Research", "Consulting"],
+    num: "06",
+    earlier: true,
+  },
+  {
+    role: "Marketing Intern",
+    company: "The Dawood Foundation (TDF Magnifiscience Centre)",
+    period: "Jun – Jul '23 · Onsite",
+    bullets: [
+      "Completed a 33-hour internship programme focused on inquiry-based learning in an informal science setting.",
+      "Promoted the 'Children's Market' event using strategic marketing techniques.",
+      "Contributed to a STEM project designing a smart stick for visually impaired people using Arduino.",
+    ],
+    tags: ["Marketing", "Arduino", "STEM"],
+    num: "07",
+    earlier: true,
   },
 ];
 
 const ExperienceSection = () => {
+  const [showEarlier, setShowEarlier] = useState(false);
+  const main = experiences.filter((e) => !e.earlier);
+  const earlier = experiences.filter((e) => e.earlier);
+  const visible = showEarlier ? [...main, ...earlier] : main;
   return (
     <section id="work" className="py-32 px-6 lg:px-16 relative">
       {/* Decorative corner */}
@@ -63,8 +135,9 @@ const ExperienceSection = () => {
         </div>
 
         {/* Cards */}
-        <div className="space-y-6">
-          {experiences.map((exp, i) => (
+        <div className="relative space-y-6 md:pl-10">
+          <div className="hidden md:block absolute left-3 top-4 bottom-4 w-px bg-gradient-to-b from-primary/50 via-border/40 to-transparent" />
+          {visible.map((exp, i) => (
             <motion.div
               key={exp.company}
               initial={{ opacity: 0, y: 30 }}
@@ -84,13 +157,40 @@ const ExperienceSection = () => {
               <div className="relative grid md:grid-cols-12 gap-6 items-start">
                 <div className="md:col-span-4">
                   <p className="font-mono text-[10px] tracking-widest text-primary/50 mb-2">{exp.period}</p>
+                  {exp.highlight && (
+                    <span className="inline-block mb-3 font-mono text-[11px] px-2.5 py-1 rounded-md bg-primary/10 text-primary border border-primary/20">
+                      {exp.highlight}
+                    </span>
+                  )}
                   <h3 className="font-serif text-2xl md:text-3xl text-foreground group-hover:text-primary transition-colors duration-500">
                     {exp.role}
                   </h3>
                   <p className="text-sm text-accent/80 mt-2 font-medium">{exp.company}</p>
                 </div>
                 <div className="md:col-span-8">
-                  <p className="text-sm text-muted-foreground leading-[1.9] mb-5">{exp.description}</p>
+                  {exp.image && exp.caseStudy && (
+                    <Link to={exp.caseStudy} className="block mb-6 rounded-xl overflow-hidden border border-border/40 bg-white hover:border-primary/50 transition-colors">
+                      <img src={exp.image} alt="Hackerman, the AI analyst built at AlphaVenture" loading="lazy" className="w-full h-auto block" />
+                    </Link>
+                  )}
+                  <ul className="space-y-3 mb-5">
+                    {exp.bullets.map((b) => (
+                      <li key={b} className="flex gap-3 text-sm text-muted-foreground leading-[1.8]">
+                        <span className="w-1 h-1 rounded-full bg-primary/50 flex-shrink-0 mt-[0.7rem]" />
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  {exp.link && (
+                    <a href={exp.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-mono text-[11px] text-primary hover:underline mb-5">
+                      Live in production ↗
+                    </a>
+                  )}
+                  {exp.caseStudy && (
+                    <Link to={exp.caseStudy} className="inline-flex items-center gap-1.5 font-mono text-[11px] text-primary hover:underline mb-5 ml-5">
+                      Read the case study →
+                    </Link>
+                  )}
                   <div className="flex flex-wrap gap-2">
                     {exp.tags.map((t) => (
                       <span key={t} className="font-mono text-[10px] px-3 py-1.5 rounded-full border border-border/30 text-muted-foreground group-hover:border-primary/15 transition-colors">
@@ -103,6 +203,16 @@ const ExperienceSection = () => {
             </motion.div>
           ))}
         </div>
+        {earlier.length > 0 && (
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={() => setShowEarlier((v) => !v)}
+              className="font-mono text-[11px] tracking-widest uppercase text-primary px-5 py-2.5 rounded-full border border-primary/25 hover:bg-primary/5 transition-colors"
+            >
+              {showEarlier ? "Hide earlier experience" : `Show earlier experience (${earlier.length})`}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
